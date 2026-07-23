@@ -1,0 +1,102 @@
+:root,
+[data-theme="light"] {
+  --bg: #f4f5f7;
+  --bg-elevated: #ffffff;
+  --bg-muted: #f3f4f6;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --sidebar: #121216;
+  --sidebar-text: #f3f4f6;
+  --sidebar-muted: #6b7280;
+  --sidebar-active: #23232b;
+  --sidebar-hover: #1c1c22;
+  --sidebar-border: #1f1f24;
+  --accent: #16a34a;
+  --accent-soft: #dcfce7;
+  --success: #16a34a;
+  --success-soft: #dcfce7;
+  --warning: #d97706;
+  --warning-soft: #fef3c7;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --peach: #ffe4d6;
+  --mint: #d8f5e7;
+  --sky: #e8eef5;
+  --lavender: #ece8f5;
+  --seat-available: #e5e7eb;
+  --seat-selected: #16a34a;
+  --seat-reserved: #9ca3af;
+  --topbar-bg: #ffffff;
+  --search-bg: #f3f4f6;
+  --icon-btn-bg: #ffffff;
+  --icon-btn-color: #4b5563;
+  --avatar-bg: #e5e7eb;
+  --avatar-color: #374151;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
+  --font: "Segoe UI", "Avenir Next", "Nunito Sans", system-ui, sans-serif;
+}
+
+[data-theme="dark"] {
+  /* Same charcoal family as the design sidebar — not blue slate */
+  --bg: #0e0e11;
+  --bg-elevated: #16161a;
+  --bg-muted: #1c1c22;
+  --text: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border: #2a2a32;
+  --sidebar: #121216;
+  --sidebar-text: #f3f4f6;
+  --sidebar-muted: #6b7280;
+  --sidebar-active: #23232b;
+  --sidebar-hover: #1c1c22;
+  --sidebar-border: #1f1f24;
+  --accent: #22c55e;
+  --accent-soft: #14532d;
+  --success: #22c55e;
+  --success-soft: #14532d;
+  --warning: #fbbf24;
+  --warning-soft: #422006;
+  --danger: #f87171;
+  --danger-soft: #450a0a;
+  --peach: #2a1c16;
+  --mint: #14261c;
+  --sky: #1a1f28;
+  --lavender: #1f1c28;
+  --seat-available: #2a2a32;
+  --seat-selected: #22c55e;
+  --seat-reserved: #4b5563;
+  --topbar-bg: #16161a;
+  --search-bg: #1c1c22;
+  --icon-btn-bg: #16161a;
+  --icon-btn-color: #d1d5db;
+  --avatar-bg: #2a2a32;
+  --avatar-color: #f3f4f6;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}

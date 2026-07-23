@@ -1,0 +1,28 @@
+{
+  "name": "cinema-seat-reservation",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @cinema/api & npm run dev -w @cinema/web",
+    "dev:api": "npm run dev -w @cinema/api",
+    "dev:web": "npm run dev -w @cinema/web",
+    "build": "npm run build -w @cinema/shared && npm run build -w @cinema/api && npm run build -w @cinema/web",
+    "db:generate": "npm run db:generate -w @cinema/api",
+    "db:migrate": "npm run db:migrate -w @cinema/api",
+    "db:seed": "npm run db:seed -w @cinema/api",
+    "simulate": "tsx scripts/simulate-concurrency.ts",
+    "verify": "tsx scripts/verify-checklist.ts",
+    "test": "npm run test -w @cinema/api",
+    "lint": "npm run lint -w @cinema/api --if-present && npm run lint -w @cinema/web --if-present"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

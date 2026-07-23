@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum SeatStatus {
+  AVAILABLE
+  RESERVED
+}
+
+enum ReservationSource {
+  FRONTEND
+  PARTNER
+}
+
+enum ReservationStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+}
+
+enum ActorType {
+  USER
+  ADMIN
+  PARTNER
+  SYSTEM
+}
+
+model User {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  passwordHash String
+  role         Role           @default(USER)
+  createdAt    DateTime       @default(now())
+  reservations Reservation[]
+  activityLogs ActivityLog[]
+
+  @@index([role, createdAt])
+  @@index([createdAt])
+}
+
+model Seat {
+  id        String    @id @default(cuid())
+  label     String    @unique
+  status    SeatStatus @default(AVAILABLE)
+  updatedAt DateTime  @updatedAt
+  reservationSeats ReservationSeat[]
+
+  @@index([status])
+  @@index([label])
+}
+
+model Reservation {
+  id        String            @id @default(cuid())
+  userId    String
+  user      User              @relation(fields: [userId], references: [id])
+  source    ReservationSource
+  status    ReservationStatus @default(ACTIVE)
+  createdAt DateTime          @default(now())
+  expiresAt DateTime
+  seats     ReservationSeat[]
+
+  @@index([createdAt])
+  @@index([userId, createdAt])
+  @@index([source, createdAt])
+  @@index([status, expiresAt])
+}
+
+model ReservationSeat {
+  reservationId String
+  seatId        String
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  seat          Seat        @relation(fields: [seatId], references: [id])
+
+  @@id([reservationId, seatId])
+  @@unique([seatId, reservationId])
+  @@index([seatId])
+}
+
+model ActivityLog {
+  id         String    @id @default(cuid())
+  actorId    String?
+  actor      User?     @relation(fields: [actorId], references: [id])
+  actorType  ActorType
+  action     String
+  entityType String?
+  entityId   String?
+  metadata   Json?
+  ip         String?
+  createdAt  DateTime  @default(now())
+
+  @@index([createdAt])
+  @@index([action, createdAt])
+  @@index([actorId, createdAt])
+}

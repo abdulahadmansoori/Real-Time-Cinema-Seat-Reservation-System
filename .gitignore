@@ -1,0 +1,11 @@
+node_modules
+dist
+.next
+.env
+.env.local
+*.log
+coverage
+.turbo
+apps/api/prisma/*.db
+apps/api/prisma/*.db-journal
+.DS_Store
